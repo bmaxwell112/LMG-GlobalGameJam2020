@@ -1,0 +1,5 @@
+[gd_resource type="StreamTexture" format=2]
+
+[resource]
+flags = 4
+load_path = "res://.import/puzzle_button_pressed.png-2d22045841f7101c4cd19b31f35c32f5.stex"
