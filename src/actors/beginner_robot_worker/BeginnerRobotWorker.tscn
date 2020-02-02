@@ -29,6 +29,7 @@ animations = [ {
 } ]
 
 [node name="RobotWorker" type="KinematicBody2D"]
+position = Vector2( 505.551, 333.268 )
 script = ExtResource( 2 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
@@ -39,10 +40,12 @@ position = Vector2( 0, -25.4558 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = 1.5708
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -47.3761 )
 frames = SubResource( 2 )
-animation = "Attack"
+animation = "Idle"
