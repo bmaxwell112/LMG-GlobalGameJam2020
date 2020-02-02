@@ -56,7 +56,9 @@ func _repair() -> void:
     print("This robot is being repaired")
 
 func success() -> void:
+    $Area2D.monitoring = false
     working = true
+    repairable = false
     $AnimatedSprite.stop()
 
 func failed() -> void:
