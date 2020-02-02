@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/puzzles/puzzle_grid_container/PuzzleGridContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/puzzles/puzzle_ui/puzzle_ui.gd" type="Script" id=2]
+[ext_resource path="res://src/textures/puzzle_block_vertical.tres" type="Texture" id=3]
+[ext_resource path="res://src/puzzles/puzzle_button_static/PuzzleButtonStatic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/textures/puzzle_block_top_left.tres" type="Texture" id=5]
+[ext_resource path="res://src/textures/puzzle_block_top_right.tres" type="Texture" id=6]
+[ext_resource path="res://src/textures/puzzle_block_bottom_left.tres" type="Texture" id=7]
+[ext_resource path="res://src/textures/puzzle_block_bottom_right.tres" type="Texture" id=8]
+[ext_resource path="res://src/textures/puzzle_block_horizontal.tres" type="Texture" id=9]
 
-[node name="PuzzleUI" type="HBoxContainer"]
+[node name="PuzzleUI" type="VBoxContainer"]
+pause_mode = 2
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
@@ -11,20 +19,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartLabel" type="Label" parent="."]
-margin_top = 13.0
-margin_right = 29.0
-margin_bottom = 27.0
-text = "Start"
-
 [node name="PuzzleGridContainer" parent="." instance=ExtResource( 1 )]
-margin_left = 33.0
-margin_right = 33.0
+margin_right = 320.0
+margin_bottom = 0.0
 
-[node name="EndLabel" type="Label" parent="."]
-margin_left = 37.0
+[node name="PuzzleChoices" type="HBoxContainer" parent="."]
 margin_top = 4.0
-margin_right = 60.0
-margin_bottom = 35.0
-text = "End
-"
+margin_right = 320.0
+margin_bottom = 54.0
+alignment = 1
+
+[node name="PuzzleButtonStaticHorizontal" parent="PuzzleChoices" instance=ExtResource( 4 )]
+margin_right = 50.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 9 )
+
+[node name="PuzzleButtonStaticVertical" parent="PuzzleChoices" instance=ExtResource( 4 )]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 3 )
+
+[node name="PuzzleButtonStaticTopLeft" parent="PuzzleChoices" instance=ExtResource( 4 )]
+margin_left = 108.0
+margin_right = 158.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 5 )
+
+[node name="PuzzleButtonStaticTopRight" parent="PuzzleChoices" instance=ExtResource( 4 )]
+margin_left = 162.0
+margin_right = 212.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 6 )
+
+[node name="PuzzleButtonStaticBottomLeft" parent="PuzzleChoices" instance=ExtResource( 4 )]
+margin_left = 216.0
+margin_right = 266.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 7 )
+
+[node name="PuzzleButtonStaticBottomRight" parent="PuzzleChoices" instance=ExtResource( 4 )]
+margin_left = 270.0
+margin_right = 320.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 8 )
+[connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticHorizontal" to="." method="_on_PuzzleButtonStaticHorizontal_pressed"]
+[connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticVertical" to="." method="_on_PuzzleButtonStaticVertical_pressed"]
+[connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticTopLeft" to="." method="_on_PuzzleButtonStaticTopLeft_pressed"]
+[connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticTopRight" to="." method="_on_PuzzleButtonStaticTopRight_pressed"]
+[connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticBottomLeft" to="." method="_on_PuzzleButtonStaticBottomLeft_pressed"]
+[connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticBottomRight" to="." method="_on_PuzzleButtonStaticBottomRight_pressed"]
