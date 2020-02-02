@@ -9,6 +9,7 @@ func _physics_process(delta: float) -> void:
   velocity = _get_movement_velocity()
   move_and_slide(velocity)
 
+
 func _get_movement_velocity() -> Vector2:
   var movement_velocity := Vector2(
     (float(Input.is_action_pressed("move_right")) - float(Input.is_action_pressed("move_left"))),

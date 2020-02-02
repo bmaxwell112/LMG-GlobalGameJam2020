@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/actors/beginner_player/BeginnerPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tileSet.png" type="Texture" id=2]
 [ext_resource path="res://src/cells/test_cell.gd" type="Script" id=3]
 [ext_resource path="res://src/actors/beginner_robot_worker/BeginnerRobotWorker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/user_interface/user_interface.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
@@ -113,9 +114,28 @@ current = true
 limit_left = 0
 limit_top = 0
 
+[node name="UI" parent="Camera2D" instance=ExtResource( 5 )]
+
 [node name="Tween" type="Tween" parent="."]
 
-[node name="RobotWorker" parent="." instance=ExtResource( 4 )]
-position = Vector2( 833.081, 355.313 )
+[node name="Robots" type="Node" parent="."]
+
+[node name="RobotWorker" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 1492.01, 363.284 )
+
+[node name="RobotWorker2" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 2554.08, 466.117 )
+
+[node name="RobotWorker3" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 3608.9, 234.96 )
+
+[node name="RobotWorker4" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 1028.97, 1627.21 )
+
+[node name="RobotWorker5" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 2559.39, 1510.31 )
+
+[node name="RobotWorker6" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 3606.24, 1741.46 )
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]

@@ -7,6 +7,11 @@ func _ready() -> void:
   tilemap_extents = $TileMap.get_used_rect().size * $TileMap.cell_size
   $Camera2D.limit_right = tilemap_extents.x
   $Camera2D.limit_bottom = tilemap_extents.y
+  $Camera2D/UI.update_health(0)
+  $Camera2D/UI.update_robots($Robots.get_children().size())
+
+func _physics_process(delta: float) -> void:
+    _repair_ready_check()
 
 func _process(delta: float) -> void:
   if not camera_moving:
@@ -52,3 +57,10 @@ func _on_Tween_tween_started(object: Object, key: NodePath) -> void:
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
   camera_moving = false
+
+func _repair_ready_check() -> void: 
+    for robot in $Robots.get_children():
+        if robot.get_node("Area2D").overlaps_body($BeginnerPlayer):
+            robot.repairable = true
+    
+        

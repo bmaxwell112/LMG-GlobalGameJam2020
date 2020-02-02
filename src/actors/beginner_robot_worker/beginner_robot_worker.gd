@@ -4,19 +4,32 @@ var paused = false
 var speed = 300
 var velocity = Vector2()
 var initial_position = Vector2()
-var distance = 300
+export var distance = 300
 var direction_is_left = true
+var repairable = false
+var working = false
+var attacking = false
 
 func _ready() -> void:
+    randomize()
     initial_position = global_position
     print(initial_position)
     $Timer.connect("timeout",self,"_resume_patrol")
+    $AnimatedSprite.connect("animation_finished",self,"_end_attack")
+    
+func _input(event):
+    if repairable && Input.is_action_just_pressed("interact"):
+        _repair()
+
+func _end_attack() -> void:
+    attacking = false;
 
 func _physics_process(_delta: float) -> void:
-  if direction_is_left:
-    _patrol(Vector2(-1, 0))
-  else:
-    _patrol(Vector2(1, 0))
+    if not working and not attacking:
+        if direction_is_left:
+            _patrol(Vector2(-1, 0))
+        else:
+            _patrol(Vector2(1, 0))
         
 
 func _patrol(direction) -> void:
@@ -35,3 +48,19 @@ func _patrol(direction) -> void:
 
 func _resume_patrol() -> void:
     $AnimatedSprite.flip_h = direction_is_left
+
+func _repair() -> void:
+    print("This robot is being repaired")
+    var r = randf()
+    if r < 0.5:
+        success()
+    else:
+        failed()
+
+func success() -> void:
+    working = true
+    $AnimatedSprite.stop()
+    
+func failed() -> void:
+    $AnimatedSprite.play("Attack")
+    attacking = true
