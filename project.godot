@@ -17,7 +17,6 @@ _global_script_class_icons={
 
 config/name="Global Game Jam 2020"
 run/main_scene="res://src/user_interface/main_menu/MainMenu.tscn"
-boot_splash/bg_color=Color( 0.807843, 0.807843, 0.807843, 1 )
 config/icon="res://icon.png"
 
 [display]
@@ -36,14 +35,14 @@ move_down={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
-move_right={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
- ]
-}
 move_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
 run={
@@ -57,8 +56,6 @@ interact={
  ]
 }
 
-[layer_names]
+[rendering]
 
-2d_physics/layer_1="Environment"
-2d_physics/layer_2="Player"
-2d_physics/layer_3="Enemies"
+environment/default_environment="res://default_env.tres"

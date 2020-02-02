@@ -122,6 +122,10 @@ limit_top = 0
 
 [node name="Robots" type="Node" parent="."]
 
+[node name="RobotWorker8" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 1547.95, 3606.38 )
+distance = 900
+
 [node name="RobotWorker" parent="Robots" instance=ExtResource( 4 )]
 position = Vector2( 1492.01, 363.284 )
 
@@ -139,5 +143,9 @@ position = Vector2( 2559.39, 1510.31 )
 
 [node name="RobotWorker6" parent="Robots" instance=ExtResource( 4 )]
 position = Vector2( 3606.24, 1741.46 )
+
+[node name="RobotWorker7" parent="Robots" instance=ExtResource( 4 )]
+position = Vector2( 1541.77, 2931.79 )
+distance = 900
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
