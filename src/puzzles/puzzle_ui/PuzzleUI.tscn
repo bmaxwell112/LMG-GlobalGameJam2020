@@ -63,6 +63,9 @@ margin_left = 270.0
 margin_right = 320.0
 margin_bottom = 50.0
 texture_normal = ExtResource( 8 )
+
+[node name="PuzzleTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticHorizontal" to="." method="_on_PuzzleButtonStaticHorizontal_pressed"]
 [connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticVertical" to="." method="_on_PuzzleButtonStaticVertical_pressed"]
 [connection signal="pressed" from="PuzzleChoices/PuzzleButtonStaticTopLeft" to="." method="_on_PuzzleButtonStaticTopLeft_pressed"]

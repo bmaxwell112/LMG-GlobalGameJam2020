@@ -1,5 +1,8 @@
 extends GridContainer
 
+signal timed_out
+signal solved
+
 var puzzle_button_textures = {
   "base": preload("res://src/textures/puzzle_block_base.tres"),
   "horizontal": preload("res://src/textures/puzzle_block_horizontal.tres"),
