@@ -3,7 +3,7 @@ extends VBoxContainer
 var current_texture = "base"
 
 func _ready() -> void:
-  $PuzzleTimer.start(30)
+  $PuzzleTimer.start(25)
 
 func _process(delta: float) -> void:
   $TimerLabel.text = "Time Remaining: %s" % round($PuzzleTimer.time_left)

@@ -1,7 +1,7 @@
 extends Control
 
 var game_scene = preload("res://src/cells/TestCell.tscn")
-var message = ""
+var message = "Congrats, you saved the factory! Boss still isn't going to give you a raise, though..."
 
 func _ready() -> void:
   $CenterContainer/VBoxContainer/MessageContainer/MessageLabel.text = message

@@ -87,6 +87,8 @@ func _on_puzzle_solved():
         ct += 1
   get_tree().paused = false
   $CanvasLayer/UI.update_robots(ct)
+  if ct == 0:
+    get_tree().change_scene("res://src/user_interface/main_menu_win/MainMenu.tscn")
 
 func _on_puzzle_timeout():
   current_puzzle.queue_free()
@@ -96,3 +98,5 @@ func _on_puzzle_timeout():
     if robot.repairable:
       robot.failed()
       $CanvasLayer/UI.update_health(10)
+  if $CanvasLayer/UI.health == 0:
+    get_tree().change_scene("res://src/user_interface/main_menu_lose/MainMenu.tscn")
