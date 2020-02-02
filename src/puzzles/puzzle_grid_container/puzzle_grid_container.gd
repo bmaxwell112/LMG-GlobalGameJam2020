@@ -1,6 +1,5 @@
 extends GridContainer
 
-signal timed_out
 signal solved
 
 var puzzle_button_textures = {

@@ -6,7 +6,7 @@ func _ready() -> void:
   $PuzzleTimer.start(30)
 
 func _process(delta: float) -> void:
-  print($PuzzleTimer.time_left)
+  $TimerLabel.text = "Time Remaining: %s" % round($PuzzleTimer.time_left)
 
 func _on_PuzzleButtonStaticHorizontal_pressed() -> void:
   $PuzzleGridContainer.current_texture = "horizontal"
