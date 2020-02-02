@@ -59,7 +59,7 @@ func success() -> void:
     $Area2D.monitoring = false
     working = true
     repairable = false
-    $AnimatedSprite.stop()
+    $AnimatedSprite.play("Disabled")
 
 func failed() -> void:
     $AnimatedSprite.play("Attack")
