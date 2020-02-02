@@ -158,5 +158,6 @@ func _on_PuzzleButtonDynamic_assigned(button):
       button.texture_normal = puzzle_button_textures[current_texture]
       if adjacent_cell == puzzle_points["end"]:
         print("YAY")
+        emit_signal("solved")
 
 

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal launch_puzzle
+
 var paused = false
 var speed = 300
 var velocity = Vector2()
@@ -16,7 +18,7 @@ func _ready() -> void:
     print(initial_position)
     $Timer.connect("timeout",self,"_resume_patrol")
     $AnimatedSprite.connect("animation_finished",self,"_end_attack")
-    
+
 func _input(event):
     if repairable && Input.is_action_just_pressed("interact"):
         _repair()
@@ -30,12 +32,12 @@ func _physics_process(_delta: float) -> void:
             _patrol(Vector2(-1, 0))
         else:
             _patrol(Vector2(1, 0))
-        
+
 
 func _patrol(direction) -> void:
   if global_position.x < (initial_position.x - distance) and direction_is_left:
     direction_is_left = false
-    $Timer.start()    
+    $Timer.start()
     $AnimatedSprite.stop()
   if global_position.x > (initial_position.x + distance) and not direction_is_left:
     direction_is_left = true
@@ -50,17 +52,13 @@ func _resume_patrol() -> void:
     $AnimatedSprite.flip_h = direction_is_left
 
 func _repair() -> void:
+    emit_signal("launch_puzzle")
     print("This robot is being repaired")
-    var r = randf()
-    if r < 0.5:
-        success()
-    else:
-        failed()
 
 func success() -> void:
     working = true
     $AnimatedSprite.stop()
-    
+
 func failed() -> void:
     $AnimatedSprite.play("Attack")
     attacking = true

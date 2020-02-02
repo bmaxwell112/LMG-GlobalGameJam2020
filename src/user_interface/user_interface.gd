@@ -3,7 +3,7 @@ extends Control
 
 # Declare member variables here. Examples:
 
-var health = 100 
+var health = 100
 
 func update_health(damage) -> void:
     health = clamp(health - damage, 0, 100)

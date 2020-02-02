@@ -1,5 +1,8 @@
 extends Node2D
 
+var puzzle_ui = preload("res://src/puzzles/puzzle_ui/PuzzleUI.tscn")
+var current_puzzle = null
+
 var tilemap_extents = Vector2()
 var camera_moving = false
 
@@ -7,8 +10,11 @@ func _ready() -> void:
   tilemap_extents = $TileMap.get_used_rect().size * $TileMap.cell_size
   $Camera2D.limit_right = tilemap_extents.x
   $Camera2D.limit_bottom = tilemap_extents.y
-  $Camera2D/UI.update_health(0)
-  $Camera2D/UI.update_robots($Robots.get_children().size())
+  $CanvasLayer/UI.update_health(0)
+  $CanvasLayer/UI.update_robots($Robots.get_children().size())
+
+  for robot in $Robots.get_children():
+    robot.connect("launch_puzzle", self, "_on_Robot_launch_puzzle")
 
 func _physics_process(delta: float) -> void:
     _repair_ready_check()
@@ -58,9 +64,35 @@ func _on_Tween_tween_started(object: Object, key: NodePath) -> void:
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
   camera_moving = false
 
-func _repair_ready_check() -> void: 
+func _repair_ready_check() -> void:
     for robot in $Robots.get_children():
         if robot.get_node("Area2D").overlaps_body($BeginnerPlayer):
             robot.repairable = true
-    
-        
+
+func _on_Robot_launch_puzzle():
+  get_tree().paused = true
+  current_puzzle = puzzle_ui.instance()
+  current_puzzle.get_node("PuzzleGridContainer").connect("solved", self, "_on_puzzle_solved")
+  current_puzzle.get_node("PuzzleTimer").connect("timeout", self, "_on_puzzle_timeout")
+  $CanvasLayer.add_child(current_puzzle)
+
+func _on_puzzle_solved():
+  var ct = 0
+  for robot in $Robots.get_children():
+    if robot.repairable:
+      robot.success()
+      current_puzzle.queue_free()
+      current_puzzle = null
+    if not robot.working:
+        ct += 1
+  get_tree().paused = false
+  $CanvasLayer/UI.update_robots(ct)
+
+func _on_puzzle_timeout():
+  current_puzzle.queue_free()
+  current_puzzle = null
+  get_tree().paused = false
+  for robot in $Robots.get_children():
+    if robot.repairable:
+      robot.failed()
+      $CanvasLayer/UI.update_health(10)
