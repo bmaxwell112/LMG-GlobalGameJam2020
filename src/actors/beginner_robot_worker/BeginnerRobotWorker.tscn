@@ -1,15 +1,16 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/Robot_0001_Layer-18.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/sprites/Robot_0001_Layer-18.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/beginner_robot_worker/beginner_robot_worker.gd" type="Script" id=2]
-[ext_resource path="res://assets/Robot_0000_Layer-8.png" type="Texture" id=3]
-[ext_resource path="res://assets/Robot_0003_Layer-16.png" type="Texture" id=4]
-[ext_resource path="res://assets/Robot.png" type="Texture" id=5]
-[ext_resource path="res://assets/Robot_0002_Layer-30.png" type="Texture" id=6]
-[ext_resource path="res://assets/Robot03 copy.png" type="Texture" id=7]
-[ext_resource path="res://assets/Robot04 copy.png" type="Texture" id=8]
-[ext_resource path="res://assets/Robot01 copy.png" type="Texture" id=9]
-[ext_resource path="res://assets/Robot02 copy.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/sprites/Robot_0000_Layer-8.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/sprites/Robot_0003_Layer-16.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/sprites/Robot.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/sprites/Robot_0002_Layer-30.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/sprites/Robot03 copy.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/sprites/Robot04 copy.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/sprites/Robot01 copy.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/sprites/Robot02 copy.png" type="Texture" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 38.6501, 35.5112 )

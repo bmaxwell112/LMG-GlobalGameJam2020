@@ -2,34 +2,10 @@ extends GridContainer
 
 signal solved
 
-var puzzle_button_textures = {
-  "base": preload("res://src/assets_compiled/textures/puzzle_block_base.tres"),
-  "horizontal": preload("res://src/assets_compiled/textures/puzzle_block_horizontal.tres"),
-  "vertical": preload("res://src/assets_compiled/textures/puzzle_block_vertical.tres"),
-  "top_left": preload("res://src/assets_compiled/textures/puzzle_block_top_left.tres"),
-  "top_right": preload("res://src/assets_compiled/textures/puzzle_block_top_right.tres"),
-  "bottom_left": preload("res://src/assets_compiled/textures/puzzle_block_bottom_left.tres"),
-  "bottom_right": preload("res://src/assets_compiled/textures/puzzle_block_bottom_right.tres"),
-  "endpoint": preload("res://src/assets_compiled/textures/puzzle_block_endpoint.tres")
-}
-var puzzle_block_directions = {
-  "base": [],
-  "endpoint": ["up", "down", "left", "right"],
-  "horizontal": ["left", "right"],
-  "vertical": ["up", "down"],
-  "top_left": ["down", "right"],
-  "top_right": ["down", "left"],
-  "bottom_left": ["up", "right"],
-  "bottom_right": ["up", "left"]
-}
-var puzzle_block_opposites = {
-  "up": "down",
-  "down": "up",
-  "left": "right",
-  "right": "left"
-}
+const PuzzlesCore = preload("res://src/lib/puzzles_core.gd")
+const PuzzleButtonDynamic = preload("res://src/puzzles/puzzle_button_dynamic/PuzzleButtonDynamic.tscn")
+
 var current_texture = "base"
-var puzzle_button_dynamic = preload("res://src/puzzles/puzzle_button_dynamic/PuzzleButtonDynamic.tscn")
 var puzzle_matrix = []
 var puzzle_points = {
   "start": Vector2(),
@@ -42,41 +18,29 @@ func _ready() -> void:
   var puzzle_valid = false
 
   while not puzzle_valid:
-    puzzle_matrix = _generate_puzzle_board()
+    puzzle_matrix = PuzzlesCore.generate(8, 10, 10)
     puzzle_points = _generate_puzzle_points()
     puzzle_valid = _is_puzzle_valid()
 
   var start_point = puzzle_matrix[puzzle_points["start"].x][puzzle_points["start"].y]
   start_point.state = "endpoint"
   start_point.valid = true
-  start_point.texture_disabled = puzzle_button_textures["endpoint"]
+  start_point.texture_disabled = PuzzlesCore.puzzle_button_textures["endpoint"]
   start_point.disabled = true
   puzzle_path.push_back(start_point)
   var end_point = puzzle_matrix[puzzle_points["end"].x][puzzle_points["end"].y]
   end_point.state = "endpoint"
   end_point.valid = true
-  end_point.texture_disabled = puzzle_button_textures["endpoint"]
+  end_point.texture_disabled = PuzzlesCore.puzzle_button_textures["endpoint"]
   end_point.disabled = true
 
   for x in range(8):
     for y in range(8):
+      var puzzle_button = PuzzleButtonDynamic.instance()
+      puzzle_button.disabled = puzzle_matrix[x][y]["disabled"]
       puzzle_matrix[x][y].pos_index = Vector2(x, y)
-      $".".add_child(puzzle_matrix[x][y])
-      puzzle_matrix[x][y].connect("assigned", self, "_on_PuzzleButtonDynamic_assigned")
-
-func _generate_puzzle_board() -> Array:
-  var matrix = []
-
-  for x in range(8):
-    var matrix_row = []
-
-    for y in range(8):
-      var new_button = puzzle_button_dynamic.instance()
-      matrix_row.append(new_button)
-    matrix.append(matrix_row)
-  for d in range((randi() % 10) + 10):
-    matrix[randi() % 8][randi() % 8].disabled = true
-  return matrix
+      $".".add_child(puzzle_button)
+      puzzle_button.connect("assigned", self, "_on_PuzzleButtonDynamic_assigned")
 
 func _generate_puzzle_points() -> Dictionary:
   var points = {}
@@ -133,7 +97,7 @@ func _is_puzzle_valid() -> bool:
   return false
 
 func _on_PuzzleButtonDynamic_assigned(button):
-  var directions = puzzle_block_directions[current_texture]
+  var directions = PuzzlesCore.puzzle_block_directions[current_texture]
   var adjacents = []
 
   for dir in directions:
@@ -155,7 +119,7 @@ func _on_PuzzleButtonDynamic_assigned(button):
 
     if not adjacent_cell == null && puzzle_matrix[adjacent_cell.x][adjacent_cell.y].valid:
       button.valid = true
-      button.texture_normal = puzzle_button_textures[current_texture]
+      button.texture_normal = PuzzlesCore.puzzle_button_textures[current_texture]
       if adjacent_cell == puzzle_points["end"]:
         emit_signal("solved")
 

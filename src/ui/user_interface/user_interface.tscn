@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/ui/user_interface/user_interface.gd" type="Script" id=1]
-[ext_resource path="res://src/assets_compiled/font/robot.tres" type="DynamicFontData" id=2]
+[ext_resource path="res://src/assets_compiled/fonts/robot.tres" type="DynamicFontData" id=2]
+
 
 
 
