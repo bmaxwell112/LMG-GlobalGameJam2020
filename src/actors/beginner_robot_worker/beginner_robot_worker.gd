@@ -15,7 +15,6 @@ var attacking = false
 func _ready() -> void:
     randomize()
     initial_position = global_position
-    print(initial_position)
     $Timer.connect("timeout",self,"_resume_patrol")
     $AnimatedSprite.connect("animation_finished",self,"_end_attack")
 
@@ -53,7 +52,6 @@ func _resume_patrol() -> void:
 
 func _repair() -> void:
     emit_signal("launch_puzzle")
-    print("This robot is being repaired")
 
 func success() -> void:
     $Area2D.monitoring = false

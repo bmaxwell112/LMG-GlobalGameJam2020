@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/Robot02 copy.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.9989, 31.3869 )
+extents = Vector2( 38.6501, 35.5112 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -43,7 +43,6 @@ extents = Vector2( 73.5255, 10 )
 [node name="RobotWorker" type="KinematicBody2D" groups=[
 "robots",
 ]]
-position = Vector2( 505.551, 333.268 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 2 )
@@ -61,7 +60,7 @@ one_shot = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -47.3761 )
 frames = SubResource( 2 )
-animation = "Disabled"
+animation = "Idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

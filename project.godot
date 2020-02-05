@@ -15,13 +15,20 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Global Game Jam 2020"
-run/main_scene="res://src/user_interface/main_menu/MainMenu.tscn"
+config/name="Hotwired Vengeance"
+config/description="You play as a disgruntled repair man trying to fix robots in a factory by disabling them before they attack you with the knives they found.
+
+Movement: WASD
+Interact: E
+Sprint: Shift"
+run/main_scene="res://src/ui/main_menu/MainMenu.tscn"
+boot_splash/image="res://assets/featuredImage.png"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/height=640
+window/size/resizable=false
 
 [input]
 

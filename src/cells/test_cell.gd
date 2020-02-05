@@ -1,6 +1,6 @@
 extends Node2D
 
-var puzzle_ui = preload("res://src/puzzles/puzzle_ui/PuzzleUI.tscn")
+var puzzle_ui = preload("res://src/ui/puzzle_ui/PuzzleUI.tscn")
 var current_puzzle = null
 
 var tilemap_extents = Vector2()
@@ -10,8 +10,8 @@ func _ready() -> void:
   tilemap_extents = $TileMap.get_used_rect().size * $TileMap.cell_size
   $Camera2D.limit_right = tilemap_extents.x
   $Camera2D.limit_bottom = tilemap_extents.y
-  $CanvasLayer/UI.update_health(0)
-  $CanvasLayer/UI.update_robots($Robots.get_children().size())
+  $UICanvas/UI.update_health(0)
+  $UICanvas/UI.update_robots($Robots.get_children().size())
 
   for robot in $Robots.get_children():
     robot.connect("launch_puzzle", self, "_on_Robot_launch_puzzle")
@@ -72,9 +72,10 @@ func _repair_ready_check() -> void:
 func _on_Robot_launch_puzzle():
   get_tree().paused = true
   current_puzzle = puzzle_ui.instance()
-  current_puzzle.get_node("PuzzleGridContainer").connect("solved", self, "_on_puzzle_solved")
-  current_puzzle.get_node("PuzzleTimer").connect("timeout", self, "_on_puzzle_timeout")
-  $CanvasLayer.add_child(current_puzzle)
+  current_puzzle.get_node("CenterContainer/PuzzleUI/PuzzleGridContainer").connect("solved", self, "_on_puzzle_solved")
+  current_puzzle.get_node("CenterContainer/PuzzleUI/PuzzleTimer").connect("timeout", self, "_on_puzzle_timeout")
+  $UICanvas.add_child(current_puzzle)
+  current_puzzle.popup()
 
 func _on_puzzle_solved():
   var ct = 0
@@ -86,7 +87,7 @@ func _on_puzzle_solved():
     if not robot.working:
         ct += 1
   get_tree().paused = false
-  $CanvasLayer/UI.update_robots(ct)
+  $UICanvas/UI.update_robots(ct)
   if ct == 0:
     get_tree().change_scene("res://src/user_interface/main_menu_win/MainMenu.tscn")
 
@@ -97,6 +98,6 @@ func _on_puzzle_timeout():
   for robot in $Robots.get_children():
     if robot.repairable:
       robot.failed()
-      $CanvasLayer/UI.update_health(10)
-  if $CanvasLayer/UI.health == 0:
+      $UICanvas/UI.update_health(10)
+  if $UICanvas/UI.health == 0:
     get_tree().change_scene("res://src/user_interface/main_menu_lose/MainMenu.tscn")

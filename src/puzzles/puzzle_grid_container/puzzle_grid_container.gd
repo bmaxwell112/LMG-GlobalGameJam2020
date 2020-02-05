@@ -3,14 +3,14 @@ extends GridContainer
 signal solved
 
 var puzzle_button_textures = {
-  "base": preload("res://src/textures/puzzle_block_base.tres"),
-  "horizontal": preload("res://src/textures/puzzle_block_horizontal.tres"),
-  "vertical": preload("res://src/textures/puzzle_block_vertical.tres"),
-  "top_left": preload("res://src/textures/puzzle_block_top_left.tres"),
-  "top_right": preload("res://src/textures/puzzle_block_top_right.tres"),
-  "bottom_left": preload("res://src/textures/puzzle_block_bottom_left.tres"),
-  "bottom_right": preload("res://src/textures/puzzle_block_bottom_right.tres"),
-  "endpoint": preload("res://src/textures/puzzle_block_endpoint.tres")
+  "base": preload("res://src/assets_compiled/textures/puzzle_block_base.tres"),
+  "horizontal": preload("res://src/assets_compiled/textures/puzzle_block_horizontal.tres"),
+  "vertical": preload("res://src/assets_compiled/textures/puzzle_block_vertical.tres"),
+  "top_left": preload("res://src/assets_compiled/textures/puzzle_block_top_left.tres"),
+  "top_right": preload("res://src/assets_compiled/textures/puzzle_block_top_right.tres"),
+  "bottom_left": preload("res://src/assets_compiled/textures/puzzle_block_bottom_left.tres"),
+  "bottom_right": preload("res://src/assets_compiled/textures/puzzle_block_bottom_right.tres"),
+  "endpoint": preload("res://src/assets_compiled/textures/puzzle_block_endpoint.tres")
 }
 var puzzle_block_directions = {
   "base": [],
@@ -157,7 +157,6 @@ func _on_PuzzleButtonDynamic_assigned(button):
       button.valid = true
       button.texture_normal = puzzle_button_textures[current_texture]
       if adjacent_cell == puzzle_points["end"]:
-        print("YAY")
         emit_signal("solved")
 
 

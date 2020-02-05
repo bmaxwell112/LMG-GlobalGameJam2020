@@ -2,14 +2,14 @@
 
 [ext_resource path="res://src/puzzles/puzzle_grid_container/PuzzleGridContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/puzzles/puzzle_ui/puzzle_ui.gd" type="Script" id=2]
-[ext_resource path="res://src/textures/puzzle_block_vertical.tres" type="Texture" id=3]
+[ext_resource path="res://src/assets_compiled/textures/puzzle_block_vertical.tres" type="Texture" id=3]
 [ext_resource path="res://src/puzzles/puzzle_button_static/PuzzleButtonStatic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/textures/puzzle_block_top_left.tres" type="Texture" id=5]
-[ext_resource path="res://src/textures/puzzle_block_top_right.tres" type="Texture" id=6]
-[ext_resource path="res://src/textures/puzzle_block_bottom_left.tres" type="Texture" id=7]
-[ext_resource path="res://src/textures/puzzle_block_bottom_right.tres" type="Texture" id=8]
-[ext_resource path="res://src/textures/puzzle_block_horizontal.tres" type="Texture" id=9]
-[ext_resource path="res://src/font/robot.tres" type="DynamicFontData" id=10]
+[ext_resource path="res://src/assets_compiled/textures/puzzle_block_top_left.tres" type="Texture" id=5]
+[ext_resource path="res://src/assets_compiled/textures/puzzle_block_top_right.tres" type="Texture" id=6]
+[ext_resource path="res://src/assets_compiled/textures/puzzle_block_bottom_left.tres" type="Texture" id=7]
+[ext_resource path="res://src/assets_compiled/textures/puzzle_block_bottom_right.tres" type="Texture" id=8]
+[ext_resource path="res://src/assets_compiled/textures/puzzle_block_horizontal.tres" type="Texture" id=9]
+[ext_resource path="res://src/assets_compiled/font/robot.tres" type="DynamicFontData" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
